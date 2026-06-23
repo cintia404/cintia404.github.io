@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cintiani Nuraeni | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- SYSTEM PREFERENCES: LIGHT & DARK COQUETTE --- */
+        :root {
+            /* Mode Terang (Default) */
+            --bg-gradient: linear-gradient(135deg, #FFFDFB 0%, #FFF0F2 40%, #F5F6FA 100%);
+            --text-main: #2C2C2C;
+            --text-muted: #7A7270;
+            --coquette-pink: #F3D5D8;
+            --coquette-dark: #D4A3A8;
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: rgba(243, 213, 216, 0.25);
+            --lace-color: rgba(243, 213, 216, 0.6);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Mode Gelap (Dark Coquette / Gothic Elegance) */
+                --bg-gradient: linear-gradient(135deg, #161515 0%, #201A1B 50%, #121214 100%);
+                --text-main: #F5EFEB;
+                --text-muted: #A39A98;
+                --coquette-pink: #4A3537;
+                --coquette-dark: #E2B2B7;
+                --glass-bg: rgba(30, 26, 27, 0.5);
+                --glass-border: rgba(255, 255, 255, 0.1);
+                --glass-shadow: rgba(0, 0, 0, 0.4);
+                --lace-color: rgba(226, 178, 183, 0.25);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            scroll-behavior: smooth;
+            cursor: none; /* Sembunyikan kursor asli laptop */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 0 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- FITUR CUSTOM CURSOR (SPARKLE) --- */
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+        /* Menggambar Sparkle Bintang dengan CSS murni */
+        #custom-cursor::before, #custom-cursor::after {
+            content: '';
+            position: absolute;
+            background: var(--coquette-dark);
+            border-radius: 50%;
+        }
+        #custom-cursor::before { top: 0; left: 9px; width: 2px; height: 20px; }
+        #custom-cursor::after { top: 9px; left: 0; width: 20px; height: 2px; }
+
+        /* --- FLOATING BACKGROUND ORNAMENTS (BOWS & FLOWERS) --- */
+        .bg-deco {
+            position: fixed;
+            font-size: 1.6rem;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.35;
+            animation: floatingSmooth 12s linear infinite;
+        }
+        @keyframes floatingSmooth {
+            0% { transform: translateY(110vh) rotate(0deg) translateX(0); }
+            50% { transform: translateY(50vh) rotate(180deg) translateX(30px); }
+            100% { transform: translateY(-10vh) rotate(360deg) translateX(0); }
+        }
+
+        /* --- LACE TRIM DIVIDER (PEMBATAS RENDA) --- */
+        .lace-divider {
+            height: 14px;
+            width: 100%;
+            background-image: radial-gradient(circle at 7px -3px, transparent 7px, var(--lace-color) 8px, transparent 9px);
+            background-size: 14px 14px;
+            margin: 20px 0;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- NAV BAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            margin-top: 25px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            box-shadow: 0 8px 32px 0 var(--glass-shadow);
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav ul a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: color 0.3s; }
+        nav ul a:hover { color: var(--coquette-dark); }
+
+        /* --- HERO --- */
+        .hero { padding: 90px 0 40px 0; text-align: center; }
+        .hero-ribbon { font-size: 2rem; display: inline-block; animation: bowWave 4s ease-in-out infinite; }
+        @keyframes bowWave { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.1) rotate(5deg); } }
+        
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 500; margin-bottom: 15px; }
+        .typing-container { font-size: 1.2rem; color: var(--text-muted); font-weight: 300; }
+        .typewriter { font-family: 'Playfair Display', serif; font-style: italic; color: var(--coquette-dark); font-weight: 500; border-right: 2px solid var(--coquette-dark); padding-right: 5px; animation: blink 0.75s step-end infinite; }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--coquette-dark); } }
+
+        /* --- FILTER BUTTONS --- */
+        .filter-container { text-align: center; margin: 30px 0 10px 0; }
+        .filter-btn { background: var(--glass-bg); backdrop-filter: blur(5px); border: 1px solid var(--glass-border); color: var(--text-muted); padding: 8px 22px; margin: 5px; font-size: 0.85rem; border-radius: 20px; cursor: none; transition: all 0.3s ease; }
+        .filter-btn:hover, .filter-btn.active { background-color: var(--coquette-dark); color: #fff; box-shadow: 0 4px 15px var(--glass-shadow); }
+
+        /* --- GLASS CARDS --- */
+        section { padding: 40px 0; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 600; margin-bottom: 30px; position: relative; display: inline-block; }
+        h2::after { content: '🌸'; position: absolute; font-size: 0.8rem; bottom: -12px; left: 0; }
+
+        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        @media (max-width: 630px) { .portfolio-grid { grid-template-columns: 1fr; } h1 { font-size: 2.3rem; } }
+
+        .portfolio-item, .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 32px 0 var(--glass-shadow);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--coquette-dark);
+            box-shadow: 0 12px 28px rgba(243, 213, 216, 0.4);
+        }
+        .portfolio-item.hide { display: none; }
+        .portfolio-item.show { animation: cardFade 0.5s ease forwards; }
+        @keyframes cardFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .tag { display: inline-block; font-size: 0.75rem; background-color: var(--coquette-pink); color: var(--text-main); padding: 3px 12px; border-radius: 20px; margin-bottom: 15px; font-weight: 500; }
+        .portfolio-item h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; margin-bottom: 10px; }
+        .portfolio-item p, .glass-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+        .card-link { font-size: 0.85rem; color: var(--coquette-dark); text-decoration: none; font-weight: 500; }
+
+        /* --- ANIMASI REVEAL --- */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- BUTTON --- */
+        .btn { display: inline-block; background: var(--coquette-dark); color: white; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-size: 0.9rem; font-weight: 500; box-shadow: 0 4px 15px var(--glass-shadow); transition: all 0.3s; border: none; cursor: none; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 163, 168, 0.6); }
+
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 40px 0; font-size: 0.85rem; color: var(--text-muted); }
+        footer a { color: var(--coquette-dark); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="custom-cursor"></div>
+
+    <div class="bg-deco" style="left: 10%; animation-delay: 0s;">🎀</div>
+    <div class="bg-deco" style="left: 30%; animation-delay: 3s; font-size: 1.2rem;">🌸</div>
+    <div class="bg-deco" style="left: 55%; animation-delay: 6s;">🎀</div>
+    <div class="bg-deco" style="left: 80%; animation-delay: 1.5s; font-size: 1.4rem;">🌸</div>
+    <div class="bg-deco" style="left: 90%; animation-delay: 4.5s;">🎀</div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">cintiani.</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio-section">Playground</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="lace-divider"></div>
+
+        <header class="hero">
+            <div class="hero-ribbon">🎀</div>
+            <h1>Cintiani Nuraeni</h1>
+            <div class="typing-container">
+                Aku seorang <span class="typewriter" id="typewriter-text"></span>
+            </div>
+        </header>
+
+        <section id="about" class="reveal">
+            <h2>About Me</h2>
+            <div class="glass-card" style="margin-top: 15px;">
+                <p>
+                    Halo! Aku berdomisili di Bandung dan saat ini sedang menempuh studi D3 Manajemen Informatika di Universitas Teknologi Digital. 
+                    Sebagai seseorang yang menyukai detail visual, aku membagi fokusku ke dua dunia bergengsi: merancang antarmuka aplikasi yang estetik di bidang <strong>Frontend Development & UI/UX</strong>, serta memandu jalannya acara formal/informal kampus sebagai seorang <strong>Master of Ceremony (MC)</strong>.
+                </p>
+            </div>
+        </section>
+
+        <section id="portfolio-section" class="reveal">
+            <h2>My Playground</h2>
+            
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">Semua Karya</button>
+                <button class="filter-btn" data-filter="tech">IT & Tech</button>
+                <button class="filter-btn" data-filter="speaking">Public Speaking</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item tech">
+                    <span class="tag">UI/UX Design</span>
+                    <h3>Kebonlokal Market</h3>
+                    <p>Desain high-fidelity mockup platform e-commerce pasar segar menggunakan Figma dengan riset user flow yang matang.</p>
+                    <a href="#" class="card-link">Lihat Figma Proyek →</a>
+                </div>
+
+                <div class="portfolio-item tech">
+                    <span class="tag">Web Development</span>
+                    <h3>Skincare Reminders</h3>
+                    <p>Aplikasi pelacak rutinitas skincare harian berbasis web untuk mencatat histori penggunaan produk perawatan kulit.</p>
+                    <a href="#" class="card-link">Lihat Source Code →</a>
+                </div>
+
+                <div class="portfolio-item speaking">
+                    <span class="tag">Master of Ceremony</span>
+                    <h3>Penyambutan Rektorat</h3>
+                    <p>Sukses memandu agenda sakral penyambutan mahasiswa baru yang dihadiri langsung oleh Rektor dan 500+ audiens secara kondusif.</p>
+                    <span class="card-link" style="color: var(--text-muted); font-size:0.8rem;">Rundown Accuracy 100% ✨</span>
+                </div>
+
+                <div class="portfolio-item speaking">
+                    <span class="tag">Liaison Officer</span>
+                    <h3>Kalamoeda Project</h3>
+                    <p>Bertanggung jawab penuh atas alur koordinasi tamu VVIP sekaligus berperan aktif sebagai talent di depan layar.</p>
+                    <span class="card-link" style="color: var(--text-muted); font-size:0.8rem;">Event Management & Public Speaking</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal" style="text-align: center; padding: 40px 0;">
+            <h2>Let's Connect</h2>
+            <div class="glass-card" style="max-width: 550px; margin: 0 auto; padding: 35px 25px;">
+                <p style="margin-bottom: 25px;">
+                    Tertarik berkolaborasi untuk membuat desain web/aplikasi, atau butuh MC profesional untuk menghidupkan acaramu? Yuk, diskusikan ide kamu!
+                </p>
+                <a href="mailto:emailkamu@gmail.com" class="btn">Hubungi Aku Lewat Email 💌</a>
+            </div>
+        </section>
+
+        <div class="lace-divider"></div>
+
+        <footer>
+            <p>© 2026 Crafted with ♡ by Cintiani. Translucent & Glassmorphic touch.</p>
+            <div style="margin-top: 15px;">
+                <a href="#">GitHub</a> · 
+                <a href="#">LinkedIn</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 1. LAGGING SPARKLE CURSOR TRAILING
+        const cursor = document.getElementById('custom-cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            // Efek lag halus (nyusul pelan) rumus interpole
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Membesarkan kursor saat hovering tombol/link
+        const interactiveElements = document.querySelectorAll('a, button, .filter-btn');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(1.5)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+        });
+
+
+        // 2. DYNAMIC TYPING EFFECT
+        const roles = ["Frontend Developer.", "UI/UX Designer.", "Professional MC."];
+        let roleIdx = 0;
+        let typingTimer;
+
+        function type() {
+            let chars = roles[roleIdx].split("");
+            var loopType = function() {
+                if (chars.length > 0) {
+                    document.getElementById('typewriter-text').innerHTML += chars.shift();
+                } else {
+                    setTimeout(erase, 2000);
+                    return false;
+                }
+                typingTimer = setTimeout(loopType, 100);
+            };
+            loopType();
+        }
+
+        function erase() {
+            let chars = roles[roleIdx].split("");
+            var loopErase = function() {
+                if (chars.length > 0) {
+                    chars.pop();
+                    document.getElementById('typewriter-text').innerHTML = chars.join("");
+                } else {
+                    roleIdx = (roleIdx + 1) % roles.length;
+                    setTimeout(type, 500);
+                    return false;
+                }
+                typingTimer = setTimeout(loopErase, 50);
+            };
+            loopErase();
+        }
+        type();
+
+
+        // 3. INTERACTIVE TAB FILTER
+        const buttons = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.portfolio-item');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                items.forEach(item => {
+                    item.classList.remove('show');
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.classList.remove('hide');
+                        item.classList.add('show');
+                    } else {
+                        item.classList.add('hide');
+                    }
+                });
+            });
+        });
+
+
+        // 4. SCROLL REVEAL ANIMATION
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(rev => {
+                const windowHeight = window.innerHeight;
+                const elementTop = rev.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    rev.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', reveal);
+        reveal();
+    </script>
+</body>
+</html>
